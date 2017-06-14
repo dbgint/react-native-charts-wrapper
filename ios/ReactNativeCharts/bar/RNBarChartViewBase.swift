@@ -20,4 +20,8 @@ class RNBarChartViewBase: RNBarLineChartViewBase {
     func setDrawBarShadow(_ enabled: Bool) {
         barChart.drawBarShadowEnabled = enabled
     }
+
+    func setDrawRoundedBar(_ enabled: Bool) {
+        barChart.drawRoundedBarEnabled = enabled
+    }
 }

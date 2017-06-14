@@ -52,6 +52,11 @@ class BarDataExtract : DataExtract {
         if config["stackLabels"].array != nil {
             barDataSet.stackLabels = config["stackLabels"].arrayValue.map({ return $0.stringValue })
         }
+
+        if config["barRoundingCorners"].array != nil {
+            let bit = config["barRoundingCorners"].arrayValue.map({ return BridgeUtils.parseRectCorners($0.stringValue).rawValue }).reduce(0, _: (+))
+            barDataSet.barRoundingCorners = UIRectCorner(rawValue: bit)
+        }
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> BarChartDataEntry {

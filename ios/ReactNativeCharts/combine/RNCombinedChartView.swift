@@ -41,4 +41,8 @@ class RNCombinedChartView: RNBarLineChartViewBase {
         _chart.drawBarShadowEnabled = enabled
     }
 
+    func setDrawRoundedBar(_ enabled: Bool) {
+        _chart.drawRoundedBarEnabled = enabled
+    }
+
 }

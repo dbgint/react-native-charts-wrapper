@@ -239,6 +239,26 @@ class BridgeUtils {
         }
 
     }
+
+    static func parseRectCorners(_ option: String) -> UIRectCorner {
+        switch option {
+        case "topLeft":
+            return UIRectCorner.topLeft
+        
+        case "topRight":
+            return UIRectCorner.topRight;
+
+        case "bottomLeft":
+            return UIRectCorner.bottomLeft
+        
+        case "bottomRight":
+            return UIRectCorner.bottomRight;
+
+        default:
+            return UIRectCorner.topLeft
+        }
+        
+    }
         
     static func androidEnumToIOSEnum(_ desc: String) -> String {
         let components = desc.components(separatedBy: "_")
