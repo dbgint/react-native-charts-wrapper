@@ -119,4 +119,9 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             );
         }
     }
+
+    @ReactProp(name = "minOffset")
+    public void setMinOffset(BarLineChartBase chart, float offset) {
+        chart.setMinOffset(offset);
+    }
 }

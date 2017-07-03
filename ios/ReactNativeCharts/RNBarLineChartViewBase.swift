@@ -114,5 +114,8 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
     }
 
+    func setMinOffset(_ offset: CGFloat) {
+        barLineChart.minOffset = offset
+    }
 
 }

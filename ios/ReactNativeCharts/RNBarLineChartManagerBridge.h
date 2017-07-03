@@ -21,7 +21,8 @@ RCT_EXPORT_VIEW_PROPERTY(scaleXEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(scaleYEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(pinchZoom, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(doubleTapToZoomEnabled, BOOL) \
-RCT_EXPORT_VIEW_PROPERTY(zoom, NSDictionary)
+RCT_EXPORT_VIEW_PROPERTY(zoom, NSDictionary) \
+RCT_EXPORT_VIEW_PROPERTY(minOffset, CGFloat)
 
 
 #endif /* RNBarLineChartManagerBridge_h */
