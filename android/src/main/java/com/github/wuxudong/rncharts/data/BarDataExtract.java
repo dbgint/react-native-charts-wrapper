@@ -11,6 +11,7 @@ import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 
 /**
@@ -78,6 +79,10 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
         }
         if (BridgeUtils.validate(config, ReadableType.Array, "stackLabels")) {
             barDataSet.setStackLabels(BridgeUtils.convertToStringArray(config.getArray("stackLabels")));
+        }
+        if (BridgeUtils.validate(config, ReadableType.Array, "barRoundingCorners")) {
+            int corners = Arrays.stream(BridgeUtils.convertToStringArray(config.getArray("barRoundingCorners"))).map(x -> BridgeUtils.parseRectCorners(x)).reduce(0, (a, b) -> a | b);
+            barDataSet.setBarRoundingCorners(corners);
         }
     }
 

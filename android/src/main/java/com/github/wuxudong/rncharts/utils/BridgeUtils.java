@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.utils;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.utils.Utils;
 
 public class BridgeUtils {
 
@@ -49,4 +50,18 @@ public class BridgeUtils {
         return array;
     }
 
+    public static int parseRectCorners(String option) {
+        switch (option) {
+        case "topLeft":
+            return Utils.TOP_LEFT;
+        case "topRight":
+            return Utils.TOP_RIGHT;
+        case "bottomLeft":
+            return Utils.BOTTOM_LEFT;
+        case "bottomRight":
+            return Utils.BOTTOM_RIGHT;
+        default:
+            return Utils.TOP_LEFT;
+        }
+    }
 }
