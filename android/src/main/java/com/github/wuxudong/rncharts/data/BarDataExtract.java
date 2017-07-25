@@ -81,7 +81,10 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
             barDataSet.setStackLabels(BridgeUtils.convertToStringArray(config.getArray("stackLabels")));
         }
         if (BridgeUtils.validate(config, ReadableType.Array, "barRoundingCorners")) {
-            int corners = Arrays.stream(BridgeUtils.convertToStringArray(config.getArray("barRoundingCorners"))).map(x -> BridgeUtils.parseRectCorners(x)).reduce(0, (a, b) -> a | b);
+            int corners = 0;
+            for (String s: BridgeUtils.convertToStringArray(config.getArray("barRoundingCorners"))) {
+                corners |= BridgeUtils.parseRectCorners(s);
+            }
             barDataSet.setBarRoundingCorners(corners);
         }
     }
