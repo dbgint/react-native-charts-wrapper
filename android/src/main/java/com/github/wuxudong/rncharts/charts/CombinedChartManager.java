@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 
 import com.facebook.react.uimanager.ThemedReactContext;
+import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.CombinedData;
@@ -28,5 +29,20 @@ public class CombinedChartManager extends BarLineChartBaseManager<CombinedChart,
     @Override
     DataExtract getDataExtract() {
         return new CombinedDataExtract();
+    }
+
+    @ReactProp(name = "drawValueAboveBar")
+    public void setDrawValueAboveBar(CombinedChart chart, boolean enabled) {
+        chart.setDrawValueAboveBar(enabled);
+    }
+
+    @ReactProp(name = "drawBarShadow")
+    public void setDrawBarShadow(CombinedChart chart, boolean enabled) {
+        chart.setDrawBarShadow(enabled);
+    }
+
+    @ReactProp(name = "drawRoundedBar")
+    public void setDrawRoundedBar(CombinedChart chart, boolean enabled) {
+        chart.setDrawRoundedBar(enabled);
     }
 }
