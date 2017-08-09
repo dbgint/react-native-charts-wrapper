@@ -373,6 +373,22 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         balloonMarker.chartView = chart
         
     }
+
+    func setExtraOffsets(_ data: NSDictionary) {
+        let json = BridgeUtils.toJson(data)
+        if json["left"].double != nil {
+            chart.extraLeftOffset = CGFloat(json["left"].doubleValue)
+        }
+        if json["top"].double != nil {
+            chart.extraTopOffset = CGFloat(json["top"].doubleValue)
+        }
+        if json["right"].double != nil {
+            chart.extraRightOffset = CGFloat(json["right"].doubleValue)
+        }
+        if json["bottom"].double != nil {
+            chart.extraBottomOffset = CGFloat(json["bottom"].doubleValue)
+        }
+    }
     
         
     @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
