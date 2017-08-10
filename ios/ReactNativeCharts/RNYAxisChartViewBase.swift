@@ -26,7 +26,7 @@ class RNYAxisChartViewBase: RNChartViewBase {
         }
 
         if (config["extendGridlines"].bool != nil) {
-            axis.extendGridlines = config.["extendGridlines"].boolValue
+            axis.extendGridlines = config["extendGridlines"].boolValue
         }
 
         if config["position"].string != nil {
