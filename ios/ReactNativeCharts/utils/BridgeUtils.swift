@@ -84,6 +84,8 @@ class BridgeUtils {
             return .outsideChart
         case "insideChart":
             return .insideChart
+        case "outsideOuterChart":
+            return .outsideOuterChart
         default:
             return .outsideChart
         }
