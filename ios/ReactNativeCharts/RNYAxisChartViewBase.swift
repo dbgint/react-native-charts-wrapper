@@ -25,6 +25,9 @@ class RNYAxisChartViewBase: RNChartViewBase {
             axis.spaceBottom = CGFloat(config["spaceBottom"].numberValue)
         }
 
+        if (config["extendGridlines"].bool != nil) {
+            axis.extendGridlines = config.["extendGridlines"].boolValue
+        }
 
         if config["position"].string != nil {
             axis.labelPosition = BridgeUtils.parseYAxisLabelPosition(config["position"].stringValue)
