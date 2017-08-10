@@ -27,7 +27,7 @@ public abstract class YAxisChartBase<T extends Chart, U extends Entry> extends C
         if (BridgeUtils.validate(propMap, ReadableType.Number, "spaceBottom")) {
             axis.setSpaceBottom((float) propMap.getDouble("spaceBottom"));
         }
-        if (BridgeUrils.validate(propMap, ReadableType.Boolean, "extendGridlines")) {
+        if (BridgeUtils.validate(propMap, ReadableType.Boolean, "extendGridlines")) {
             axis.setExtendGridlines(propMap.getBoolean("extendGridlines"));
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
