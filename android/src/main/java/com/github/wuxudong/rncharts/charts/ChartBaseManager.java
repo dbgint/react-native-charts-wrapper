@@ -300,6 +300,12 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
             axis.enableGridDashedLine(lineLength, spaceLength, phase);
         }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "xOffset")) {
+            axis.setXOffset((float) propMap.getDouble("xOffset"));
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "yOffset")) {
+            axis.setYOffset((float) propMap.getDouble("yOffset"));
+        }
 
         // limit lines
         if (BridgeUtils.validate(propMap, ReadableType.Array, "limitLines")) {

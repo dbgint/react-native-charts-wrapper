@@ -265,6 +265,14 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             
             axis.gridLineDashLengths = [lineLength, spaceLength]
         }
+
+        if config["xOffset"].number != nil {
+            axis.xOffset = CGFloat(config["xOffset"].numberValue)
+        }
+
+        if config["yOffset"].number != nil {
+            axis.yOffset = CGFloat(config["yOffset"].numberValue)
+        }
         
         // limit lines
         if config["limitLines"].array != nil {
