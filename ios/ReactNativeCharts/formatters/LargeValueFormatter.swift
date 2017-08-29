@@ -40,7 +40,7 @@ open class LargeValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter
             length += 1
         }
         
-        var r = String(format: "%2.f", sig) + suffix[length]
+        var r = String(format: "%2.3G", sig) + suffix[length]
         
         if appendix != nil
         {
