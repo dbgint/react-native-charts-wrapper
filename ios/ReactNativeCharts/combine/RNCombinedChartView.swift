@@ -43,7 +43,8 @@ class RNCombinedChartView: RNBarLineChartViewBase {
 
     func setDrawRoundedBar(_ enabled: Bool) {
         _chart.drawRoundedBarEnabled = enabled
-        
+    }
+    
     func setHighlightFullBarEnabled(_ enabled: Bool) {
         _chart.highlightFullBarEnabled = enabled
     }
