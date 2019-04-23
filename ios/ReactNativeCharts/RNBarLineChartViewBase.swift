@@ -16,6 +16,8 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     
     var savedVisibleRange : NSDictionary?
 
+    var savedZoom : NSDictionary?
+
     override func setYAxis(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
 
@@ -139,6 +141,10 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     }
 
     func setZoom(_ config: NSDictionary) {
+        self.savedZoom = config
+    }
+
+    func updateZoom(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
 
         if json["scaleX"].float != nil && json["scaleY"].float != nil && json["xValue"].double != nil && json["yValue"].double != nil {
@@ -181,8 +187,14 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     override func onAfterDataSetChanged() {
         super.onAfterDataSetChanged()
 
-        if let config = savedVisibleRange {
-            updateVisibleRange(config)
+        // clear zoom after applied, but keep visibleRange
+        if let visibleRange = savedVisibleRange {
+            updateVisibleRange(visibleRange)
+        }
+
+        if let zoom = savedZoom {
+            updateZoom(zoom)
+            savedZoom = nil
         }
     }
 
