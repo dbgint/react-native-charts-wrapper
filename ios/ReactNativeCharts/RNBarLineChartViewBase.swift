@@ -173,7 +173,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         barLineChart.setViewPortOffsets(left: left, top: top, right: right, bottom: bottom)
     }
 
-    func setExtraOffsets(_ config: NSDictionary) {
+    override func setExtraOffsets(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
     
         let left = json["left"].double != nil ? CGFloat(json["left"].doubleValue) : 0

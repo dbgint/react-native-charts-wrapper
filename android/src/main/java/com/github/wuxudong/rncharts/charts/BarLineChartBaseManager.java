@@ -221,11 +221,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         }
     }
 
-<<<<<<< HEAD
     @ReactProp(name = "minOffset")
     public void setMinOffset(BarLineChartBase chart, float offset) {
         chart.setMinOffset(offset);
-=======
+    }
+    
     // Note: Offset aren't updated until first touch event: https://github.com/PhilJay/MPAndroidChart/issues/892
     @ReactProp(name = "viewPortOffsets")
     public void setViewPortOffsets(BarLineChartBase chart, ReadableMap propMap) {
@@ -420,6 +420,5 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
             ChartGroupHolder.addChart(extraProperties.group, extraProperties.identifier, chart, extraProperties.syncX, extraProperties.syncY);
         }
->>>>>>> remote048
     }
 }
