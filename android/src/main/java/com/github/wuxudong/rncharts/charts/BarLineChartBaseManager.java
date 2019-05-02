@@ -172,7 +172,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     @ReactProp(name = "dragXEnabled")
     public void setDragXEnabled(BarLineChartBase chart, boolean enabled) {
         chart.setDragXEnabled(enabled);
-        
+    }
+    
     @ReactProp(name = "highlightPerDragEnabled")
     public void setHighlightPerDragEnabled(BarLineChartBase chart, boolean enabled) {
         chart.setHighlightPerDragEnabled(enabled);

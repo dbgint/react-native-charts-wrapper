@@ -42,7 +42,8 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     @ReactProp(name = "drawRoundedBar")
     public void setDrawRoundedBar(BarChart chart, boolean enabled) {
         chart.setDrawRoundedBar(enabled);
-        
+    }
+    
     @ReactProp(name = "highlightFullBarEnabled")
     public void setHighlightFullBarEnabled(BarChart chart, boolean enabled) {
         chart.setHighlightFullBarEnabled(enabled);
