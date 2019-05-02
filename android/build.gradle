@@ -15,5 +15,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation('com.github.devbridge:MPAndroidChart:v3.0.3') {
+        version {
+            branch = 'feature/upgrade_to_v303'
+        }
+    }
 }
