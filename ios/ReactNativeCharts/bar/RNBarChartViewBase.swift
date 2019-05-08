@@ -24,4 +24,8 @@ class RNBarChartViewBase: RNBarLineChartViewBase {
     func setDrawRoundedBar(_ enabled: Bool) {
         barChart.drawRoundedBarEnabled = enabled
     }
+    
+    func setHighlightFullBarEnabled(_ enabled: Bool) {
+        barChart.highlightFullBarEnabled = enabled
+    }
 }

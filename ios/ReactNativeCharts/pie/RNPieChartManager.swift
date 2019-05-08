@@ -5,10 +5,15 @@
 import UIKit
 
 @objc(RNPieChartManager)
+@objcMembers
 open class RNPieChartManager: RCTViewManager {
   override open func view() -> UIView! {
     let ins = RNPieChartView()
     return ins;
   }
-  
+
+  override public static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }
