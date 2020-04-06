@@ -2,21 +2,21 @@
 
 ## Environment:
 
-Outdated react-native version may cause some anonying problems, so keep them update to date.
+Outdated react-native version may cause some anonying problems, so keep them up to date.
 
 This is my environment.
 
 ```
 $ yarn -v
-1.9.4
+1.16.0
 
 $ react-native -v
 react-native-cli: 2.0.1
 
 $ pod --version
-1.5.3
+1.7.4
 
-Xcode 10.2
+Xcode 11.0
 
 swift 5
 
@@ -84,61 +84,15 @@ const styles = StyleSheet.create({
 
 #### 1. update android/build.gradle, upgrade gradle tools version, add jitpack.io
 
+add `maven { url "https://jitpack.io" }` under allprojects -> repositories if it is absent, IT IS USED BY MPAndroidChart
 
+make sure compileSdkVersion >= 28
 
-
-    // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-    buildscript {
-        repositories {
-            jcenter()
-            maven {
-                url 'https://maven.google.com/'
-                name 'Google'
-            }
-        }
-        dependencies {
-            classpath 'com.android.tools.build:gradle:3.3.1'  // UPGRADE VERSION TO 3.x
-
-            // NOTE: Do not place your application dependencies here; they belong
-            // in the individual module build.gradle files
-        }
-    }
-
-    allprojects {
-        repositories {
-            mavenLocal()
-            jcenter()
-            maven {
-                // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-                url "$rootDir/../node_modules/react-native/android"
-            }
-            maven {
-                url 'https://maven.google.com/'
-                name 'Google'
-            }
-            maven { url "https://jitpack.io" }    // ADD jitpack.io, IT IS USED BY MPAndroidChart
-        }
-    }
-
-    ext {        
-        minSdkVersion = 16
-        compileSdkVersion = 26
-        targetSdkVersion = 26
-        supportLibVersion = "26.1.0"
-    }
-
-
-#### 2. update gradle version >= 4.10.1 in android/gradle/wrapper/gradle-wrapper.properties 
-
-```
-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip	
-```
-
+#### 2. make sure gradle version >= 5.1.1 in android/gradle/wrapper/gradle-wrapper.properties 
 
 #### 3. link subproject
 
-*   **Mostly automatic install with react-native**
+*   **Mostly automatic install with react-native link**
 
 		react-native link react-native-charts-wrapper
 				
@@ -183,118 +137,33 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip
 	}
 	```
 
-
-#### 4.  **Additional setting**
-   
-Add following code to MainApplication.java for RN >= 0.54, check [#229](https://github.com/wuxudong/react-native-charts-wrapper/issues/229) and the code in android example.
-
-```java
-  import com.facebook.react.bridge.ReadableNativeArray;
-  import com.facebook.react.bridge.ReadableNativeMap;
-  
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-    ReadableNativeArray.setUseNativeAccessor(true);
-    ReadableNativeMap.setUseNativeAccessor(true);
-  }
-```
-
-
-
-#### 5. Run
+#### 4. Run
 
 react-native run-android, that is it.
 
 
 ## iOS
 
-* add postinstall in package.json
-
-```
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h"
-  }
-
-```
-
-* run `yarn install` again
 * link subproject
 
 	*   **use cocoapods(suggested)**
-
-		* create ios/Podfile
-
-		```
-		platform :ios, '9.0'
-			
-		use_frameworks!
-			
-		target 'demo' do
-		    pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga/'
-		    pod 'React', path: '../node_modules/react-native/', :subspecs => [
-		    'Core',
-		    'ART',
-		    'RCTActionSheet',
-		    'RCTAnimation',
-		    'RCTLinkingIOS',
-		    'RCTGeolocation',
-		    'RCTImage',
-		    'RCTNetwork',
-		    'RCTText',
-		    'RCTVibration',
-		    'RCTWebSocket',
-		    'DevSupport',
-		    'CxxBridge',
-		    ]
-		    
-		    pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
-		    pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
-		    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-		    
-		    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
-		end
-			
-		swift4 = ['Charts']
-
-        post_install do |installer|
-          installer.pods_project.targets.each do |target|
-            target.build_configurations.each do |config|
-              if swift4.include?(target.name)
-                config.build_settings['SWIFT_VERSION'] = '4.2'
-              end
-            end
-          end
-        end
-
-		```
-
 		
+		* add `pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'` to ios/Podfile
+
 		* cd ios && pod install
 		* open demo.xcworkspace
 		* create a empty swift file, the xcode will prompt a message 'Would you like to configure an Objective-C bridging header?' to Create Bridging Header, accept it.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/create-oc-bridging-header.png)
-
+		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
 
-		* if you can't open development menu in iOS simulator, you can remove other libraries except Pods_demo.framework, and delete other targets except demo.
-
-		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/ios_project_settings.png)
-
-
-
-		
-
 
 	* **manual setup**
 
-		Sometime `use_frameworks!` in Podfile conflict with other libs like  react-native-maps.  In this case, you can link this lib manually.
+		You can also link this lib manually.
 	
 		* Add Source Files
 		
@@ -330,21 +199,10 @@ react-native run-android, that is it.
 
 			```
 			target 'demo' do
-			  pod 'SwiftyJSON', '4.0.0'      
-			  pod 'Charts', '3.2.2'         
+			  pod 'SwiftyJSON', '5.0'      
+			  pod 'Charts', '3.3.0'         
 			end
 
-			swift4 = ['Charts']
-
-            post_install do |installer|
-              installer.pods_project.targets.each do |target|
-                target.build_configurations.each do |config|
-                  if swift4.include?(target.name)
-                    config.build_settings['SWIFT_VERSION'] = '4.2'
-                  end
-                end
-              end
-            end
 			```
 			
 			* manual install
@@ -357,7 +215,7 @@ react-native run-android, that is it.
 
 		* update project setting
 		
-     	  update `Swift Language Version` in `Build Settings` to 4.2
+     	  update `Swift Language Version` in `Build Settings` to 5.0
 		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
